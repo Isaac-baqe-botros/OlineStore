@@ -6,25 +6,29 @@
 }
 
  
+<div class="container">
+    <div class="text-center mt-4">
+        <h1> اضافه الى @ViewBag.Name</h1>
 
-<h1> اضافه الى @ViewBag.Name</h1>
+    </div>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateForCategory">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <h5 class="card-title">الاسم</h5>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Count" class="control-label"></label>
+                <h5 class="card-title">العدد</h5>
                 <input asp-for="Count" class="form-control" />
                 <span asp-validation-for="Count" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                <h5 class="card-title">سعر القطعه</h5>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
@@ -33,7 +37,7 @@
                 @* Add a hidden field to retain the CategoryId *@
                 <input type="hidden" asp-for="CategoryId" />
                 <div class="form-group">
-                    <input type="submit" value="CreateForCategory" class="btn btn-primary" />
+                    <input type="submit" value="أضافه منتج" class="btn btn-primary" />
                 </div>
             </div>
 

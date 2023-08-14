@@ -1,0 +1,43 @@
+﻿@model Elhoot_HomeDevices.ViewModels.EldyanaatViewmodel
+
+<h1>كل الدين اللى عليا: @Model.TotalMoney</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">إضافة جديد</a>
+</p>
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>العميل</th>
+            <th>المبلغ</th>
+            <th>بداية التاريخ</th>
+            <th>الفائدة</th>
+            <th>عدد الشهور</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Deeens)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Money)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pienfits)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.CountMonth)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">تعديل</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-name="@item.Name" class="btn btn-sm btn-info">دخول</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

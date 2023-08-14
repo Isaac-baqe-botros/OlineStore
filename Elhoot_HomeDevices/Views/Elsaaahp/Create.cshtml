@@ -1,0 +1,54 @@
+﻿@model Elhoot_HomeDevices.Data.Elsaahp
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>تعديل</h1>
+
+ <hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <h4>اسم العميل</h4>
+                <input asp-for="ClientName" class="form-control" />
+                <span asp-validation-for="ClientName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h4>اسم المنتج</h4>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h4> تاريخ السحب</h4>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h4> السعر الكلى</h4>
+                <input asp-for="Allprice" class="form-control" />
+                <span asp-validation-for="Allprice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h4> عدد الشهور</h4>
+                <input asp-for="CountMounth" class="form-control" />
+                <span asp-validation-for="CountMounth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

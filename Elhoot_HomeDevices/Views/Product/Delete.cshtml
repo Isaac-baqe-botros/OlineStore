@@ -1,0 +1,30 @@
+﻿@model Elhoot_HomeDevices.Data.Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<div class="container">
+    <h1 class="text-center">حذف منتج</h1>
+
+    <div class="card bg-danger text-white mb-3">
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => Model.Name)</h5>
+            <p class="card-text"><h4>العدد</h4>: @Html.DisplayFor(modelItem => Model.Count)</p>
+            <p class="card-text"><h4>سعر الوحد</h4>: @Html.DisplayFor(modelItem => Model.Price)</p>
+            <p class="card-text"><h4>السعر ىالكلى</h4>: @Html.DisplayFor(modelItem => Model.TotalPriceCount)</p>
+
+            <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+                <br />
+                <button type="submit" class="btn btn-secondary">حذف</button>
+                <br />
+                <br />
+                @*a asp-controller="Product" asp-action="Index" asp-route-categoryId="@Model.CategoryId"
+                   asp-route-CatName="@Model.Category.Name"
+                   class="btn btn-secondary"> الغاء</a>*@
+
+              
+            </form>
+        </div>
+    </div>
+</div>

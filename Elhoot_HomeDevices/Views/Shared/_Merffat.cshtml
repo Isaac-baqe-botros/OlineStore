@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Elhoot_HomeDevices</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Elhoot_HomeDevices.styles.css" asp-append-version="true" />
+</head>
+<body>
+   
+    <header class="bg-primary text-white">
+        <div class="container py-3">
+            <h1>Elhoot_HomeDevices</h1>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Elhoot_HomeDevices</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                          @*  <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: red;" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: green;" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>*@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: crimson;" asp-area="" asp-controller="Category" asp-action="Index">المخزن </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: darkcyan;" asp-area="" asp-controller="Customer" asp-action="Index">العملا </a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: darkslategray;" asp-area="" asp-controller="Elmadyounat" asp-action="Index">المديونات </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: chocolate;" asp-area="" asp-controller="Eldyaanate" asp-action="Index"> الداين مينا مرتاح</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" asp-area="" asp-controller="Elsaaahp" asp-action="Index"
+                                   style="background-color: palevioletred; transition: background-color 0.3s;" :hover="background-color:red;">سحب الاجهزه</a>
+                            </li>
+
+
+
+
+
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted bg-light">
+        <div class="container py-3">
+            &copy; 2023 - Elhoot_HomeDevices - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <!-- Add any other footer content here -->
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

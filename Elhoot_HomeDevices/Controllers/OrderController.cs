@@ -198,6 +198,19 @@ namespace Elhoot_HomeDevices.Controllers
 
         public IActionResult Delete(int id)
         {
+            var deen = _context.Orders.FirstOrDefault(m => m.Id == id);
+            if (deen == null)
+            {
+                // Customer with the specified ID was not found, handle the error accordingly
+                return NotFound();
+            }
+
+            return View(deen);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConvermid(int id)
+        {
             var order = _context.Orders.Include(o => o.DatesInRange).FirstOrDefault(o => o.Id == id);
 
             var cust = _context.Customers.Find(order.CustomerId);

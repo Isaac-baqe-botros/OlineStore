@@ -8,48 +8,48 @@
  
  
  
-<p>
-    <a asp-action="Create" asp-route-customername="@TempData["customername"]" class="btn btn-primary">Create New</a>
-</p>
+@*<p>
+    <a asp-action="Create" asp-route-customername="@TempData["customername"]" class="btn btn-primary">اضافه </a>
+</p>*@
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <thead>
             <tr class="table-primary"> 
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.productNmae)
+                      <h4>اسم المنتج</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.AllPrice)
+                        <h4>السعر الكلى</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.PayedPrice)
+                       <h4>المبلغ المدفوع</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.RestPrice)
+                       <h4>المبلغ المتبقى</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.Penfits)
+                    <h4>الفايده </h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.Peroid)
+                      <h4>عدد الشهور</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.PriceAfterBenfits)
+                       <h4>المبلغ الكلى مع الفايده</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.PriceAfterpermonth)
+                       <h4>القسط الشهرى</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model =>model.Order.PayerTime)
+                       <h4>تاريخ الاستلام</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.Startdate)
+                       <h4>تاريخ اول قسط</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.Enddate)
+                       <h4>تاريخ اخر قسط</h4>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Order.Comment)
+                        <h4>اى تعليق</h4>
                 </th>
                  
                 <th></th>
@@ -99,9 +99,10 @@
                     </td>
                    
                     <td>
-                        <a asp-action="Edit" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-primary">Edit</a>
+                        <a asp-action="Edit" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-primary">تعديل</a>
                         @*<a asp-action="Details" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-info">Details</a>*@
-                        <a asp-action="Delete" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-danger">Delete</a>
+                        <br />
+                        <a asp-action="Delete" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-danger">حذف</a>
                     </td>
                     
                  </tr>

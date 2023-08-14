@@ -43,12 +43,28 @@ namespace Elhoot_HomeDevices.Controllers
 
             return RedirectToAction("Index");   
         }
-        public IActionResult Delete(int ID) {
-          var item=  _context.Categories.FirstOrDefault(item=>item.Id==ID);
-            _context.Categories.Remove(item);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+        public IActionResult Delete()
+        {
+            var categories = _context.Categories.ToList();
+            return View(categories);
         }
+
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int categoryId)
+        {
+            var category = _context.Categories.Find(categoryId);
+            if (category != null)
+            {
+                _context.Categories.Remove(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            // Handle category not found case here
+
+            return RedirectToAction("Delete");
+        }
+
         public IActionResult Update(int ID)
         {
             if (!ModelState.IsValid)

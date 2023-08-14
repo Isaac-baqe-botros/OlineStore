@@ -51,7 +51,6 @@ namespace Elhoot_HomeDevices.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -81,6 +80,9 @@ namespace Elhoot_HomeDevices.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CountMonth")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Money")
                         .HasColumnType("decimal(18,2)");
 
@@ -96,7 +98,46 @@ namespace Elhoot_HomeDevices.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("dayeenateys");
+                    b.ToTable("Dayeenateys");
+                });
+
+            modelBuilder.Entity("Elhoot_HomeDevices.Data.Elsaahp", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Allprice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CountMounth")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateFree")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("PayPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Paypalce")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Elsaahps");
                 });
 
             modelBuilder.Entity("Elhoot_HomeDevices.Data.Madunaate", b =>
@@ -277,6 +318,83 @@ namespace Elhoot_HomeDevices.Data.Migrations
                     b.HasIndex("MadunaateId");
 
                     b.ToTable("SelectedDates");
+                });
+
+            modelBuilder.Entity("Elhoot_HomeDevices.Data.SelectedDateElsaahp", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("DateFree")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Dateofsahp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ElsaahpId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ElsahpID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsSelected")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("PayPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Paypalce")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ElsaahpId");
+
+                    b.ToTable("SelectedDateElsaahp");
+                });
+
+            modelBuilder.Entity("Elhoot_HomeDevices.Data.SelecteddataDyant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateFree")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DayeenateyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DeenID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsSelected")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Paypalce")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DayeenateyId");
+
+                    b.ToTable("selecteddataDyants");
                 });
 
             modelBuilder.Entity("Elhoot_HomeDevices.Data.StoreDate", b =>
@@ -566,6 +684,28 @@ namespace Elhoot_HomeDevices.Data.Migrations
                     b.Navigation("Madunaate");
                 });
 
+            modelBuilder.Entity("Elhoot_HomeDevices.Data.SelectedDateElsaahp", b =>
+                {
+                    b.HasOne("Elhoot_HomeDevices.Data.Elsaahp", "Elsaahp")
+                        .WithMany("selectedDatesRange")
+                        .HasForeignKey("ElsaahpId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Elsaahp");
+                });
+
+            modelBuilder.Entity("Elhoot_HomeDevices.Data.SelecteddataDyant", b =>
+                {
+                    b.HasOne("Elhoot_HomeDevices.Data.Dayeenatey", "Dayeenatey")
+                        .WithMany("selectedDatesRange")
+                        .HasForeignKey("DayeenateyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dayeenatey");
+                });
+
             modelBuilder.Entity("Elhoot_HomeDevices.Data.StoreDate", b =>
                 {
                     b.HasOne("Elhoot_HomeDevices.Data.Order", null)
@@ -629,6 +769,16 @@ namespace Elhoot_HomeDevices.Data.Migrations
             modelBuilder.Entity("Elhoot_HomeDevices.Data.Customer", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Elhoot_HomeDevices.Data.Dayeenatey", b =>
+                {
+                    b.Navigation("selectedDatesRange");
+                });
+
+            modelBuilder.Entity("Elhoot_HomeDevices.Data.Elsaahp", b =>
+                {
+                    b.Navigation("selectedDatesRange");
                 });
 
             modelBuilder.Entity("Elhoot_HomeDevices.Data.Madunaate", b =>

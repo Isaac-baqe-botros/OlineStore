@@ -1,49 +1,55 @@
 ﻿@model Elhoot_HomeDevices.Data.Dayeenatey
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "إنشاء";
 }
 
-<h1>Edit</h1>
+<h1>إنشاء مديون جديد</h1>
 
-<h4>Madunaate</h4>
+ 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">الاسم</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Money" class="control-label"></label>
+                <label asp-for="Money" class="control-label">المبلغ</label>
                 <input asp-for="Money" class="form-control" />
                 <span asp-validation-for="Money" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="date" class="control-label"></label>
+                <label asp-for="date" class="control-label">التاريخ</label>
                 <input asp-for="date" class="form-control" />
                 <span asp-validation-for="date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pienfits" class="control-label"></label>
+                <label asp-for="Pienfits" class="control-label">الفائدة</label>
                 <input asp-for="Pienfits" class="form-control" />
                 <span asp-validation-for="Pienfits" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="CountMonth" class="control-label">عدد الشهور</label>
+                <input asp-for="CountMonth" class="form-control" />
+                <span asp-validation-for="CountMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إنشاء" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">العودة إلى القائمة</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

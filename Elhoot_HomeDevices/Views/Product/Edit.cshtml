@@ -6,27 +6,31 @@
     SelectList selectListItems = new SelectList(ViewBag.Catogeryname, "Id", "Name");
 }
 
-<h1>Edit</h1>
 
-<h4>Product</h4>
 <hr />
+<div class="container">
+    <div class="text-center mt-4">
+
+        <h1>تعديل المنتج</h1>
+
+    </div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <h5 class="card-title">الاسم</h5>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Count" class="control-label"></label>
+                <h5 class="card-title">العدد</h5>
                 <input asp-for="Count" class="form-control" />
                 <span asp-validation-for="Count" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                <h5 class="card-title">السعر</h5>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
@@ -37,7 +41,8 @@
             </div>
            
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <br />
+                <input type="submit" value="حفظ" class="btn btn-primary" />
             </div>
         </form>
     </div>

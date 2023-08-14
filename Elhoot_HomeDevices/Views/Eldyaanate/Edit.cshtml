@@ -1,39 +1,45 @@
 ﻿@model Elhoot_HomeDevices.Data.Dayeenatey
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>التعديل</h1>
 
-<h4>Madunaate</h4>
+ 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+               <h4>الاسم</h4>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Money" class="control-label"></label>
+                <h4>الفلوس</h4>
                 <input asp-for="Money" class="form-control" />
                 <span asp-validation-for="Money" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="date" class="control-label"></label>
+                <h4>التاريخ</h4>
                 <input asp-for="date" class="form-control" />
                 <span asp-validation-for="date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pienfits" class="control-label"></label>
+                <h4>الفايده</h4>
                 <input asp-for="Pienfits" class="form-control" />
                 <span asp-validation-for="Pienfits" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <h4>عدد الشهور</h4>
+                <input asp-for="CountMonth" class="form-control" />
+                <span asp-validation-for="CountMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -44,5 +50,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

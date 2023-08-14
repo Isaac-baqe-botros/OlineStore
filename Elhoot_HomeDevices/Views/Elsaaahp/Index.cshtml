@@ -1,0 +1,113 @@
+﻿@model IEnumerable< Elhoot_HomeDevices.ViewModels.ElsaahpViewModelIndex> 
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@ViewBag.money =كل فلوس السحب</h1>
+
+
+
+<p>
+    <a asp-action="Create"   class="btn btn-primary">انشاء سحب جديد</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr class="table-primary">
+                <th>
+                  <h4>اسم العميل</h4>
+                </th>
+                <th>
+                    <h4>اسم المنتج</h4>
+                </th>
+                <th>
+                    <h4> تاريخ السحب</h4>
+                </th>
+                <th>
+                    <h4> السعر الكلى</h4>
+                </th>
+                <th>
+                    <h4> عدد الشهور</h4>
+                </th>
+                 
+            </tr>
+        </thead>
+        <tbody>
+
+           
+                @foreach(var item in Model)
+                {
+                <tr class="table-danger">
+                <td>
+                    @Html.DisplayFor(modelItem => item.clientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem =>item.Productname)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem =>item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem =>item.Allpeice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem =>item.CountMouth)
+                </td>
+                
+               
+                
+                <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">تعديل</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info" asp-route-name="@item.clientName" asp-route-price="@item.Allpeice">دخول </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">حدف</a>
+                </td>
+            </tr>
+            }
+            <input type="hidden" id="hiddenDateTime" value="@ViewBag.dateTime" />
+        </tbody>
+    </table>
+
+
+
+
+</div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+ 
 
 namespace Elhoot_HomeDevices.Data
 {
@@ -27,7 +28,9 @@ namespace Elhoot_HomeDevices.Data
 
         public DbSet<SelectedDate> SelectedDates { get; set; }
         public DbSet<Madunaate> madunaates { get; set; }
-        public DbSet<Dayeenatey> dayeenateys { get; set; }
+        public DbSet<Dayeenatey> Dayeenateys { get; set; }
+        public DbSet<SelecteddataDyant>  selecteddataDyants { get; set; }
+        public DbSet<Elsaahp>Elsaahps { get; set; }
 
     }
     public class SelectedDate
@@ -93,7 +96,7 @@ namespace Elhoot_HomeDevices.Data
         [EmailAddress]
         public string? Email { get; set; }
 
-        public string Address { get; set; }
+        public string ?Address { get; set; }
         public int Sequance { get; set; }    
         public ICollection<Order>? Orders { get; set; }
         [Phone]
@@ -194,13 +197,58 @@ namespace Elhoot_HomeDevices.Data
     }
     public class Dayeenatey
     {
+        
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Money { get; set; }
         public DateTime date { get; set; }
         public decimal Pienfits { get; set; }
+        public int? CountMonth { get; set; }
+        public List<SelecteddataDyant>? selectedDatesRange { get; set; } = new List<SelecteddataDyant>();
 
+    }
+    public class SelecteddataDyant
+    {
+        public int Id { get; set; }
+        public int DeenID { get; set; }
+        public DateTime Date { get; set; }
+        public bool IsSelected { get; set; }
+
+        // Navigation property to the associated order
+        public Dayeenatey Dayeenatey { get; set; }
+        public string Status { get; set; } = "";
+        public DateTime? DateFree { get; set; }
+        public string? Paypalce { get; set; }
+        
+    }
+    public class Elsaahp
+    {
+        public int Id { get; set; }
+        public string ClientName { get; set; }
+        public string ProductName { get; set; }
+        public decimal Allprice { get; set; }
+        public decimal PayPrice { get; set; }
+        public DateTime Date    { get; set; } 
+        public DateTime DateFree { get; set; }
+        public string? Paypalce { get; set; }
+        public List<SelectedDateElsaahp>? selectedDatesRange { get; set; } = new List<SelectedDateElsaahp>();
+        public int CountMounth { get; set; }    
+    }
+
+
+    public class SelectedDateElsaahp
+    {
+        public int Id { get; set; }
+        public int ElsahpID { get; set; }
+        public DateTime Dateofsahp { get; set; }
+        public bool IsSelected { get; set; }
+        public decimal PayPrice { get; set; }
+        // Navigation property to the associated order
+        public string Status { get; set; } = "";
+        public DateTime? DateFree { get; set; }
+        public string? Paypalce { get; set; }
+        public Elsaahp Elsaahp { get; set; }
     }
 }
 
-
+ 

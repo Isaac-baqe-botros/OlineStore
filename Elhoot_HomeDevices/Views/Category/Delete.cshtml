@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Elhoot_HomeDevices.Data.Category>
+
+@{
+    ViewData["Title"] = "Delete Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>حذف الفئة</h1>
+
+<p>اختر الفئة التي ترغب في حذفها:</p>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <div class="form-group">
+        <label for="categoryId">اختر الفئة:</label>
+        <select class="form-control" id="categoryId" name="categoryId">
+            <option value="">-- اختر الفئة --</option>
+            @foreach (var category in Model)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-danger">حذف</button>
+    <br />
+    <br />
+    <a asp-action="Index" class="btn btn-secondary">العودة</a>
+</form>

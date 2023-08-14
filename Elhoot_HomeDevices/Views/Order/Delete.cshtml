@@ -1,0 +1,45 @@
+﻿@model Elhoot_HomeDevices.Data.Order
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>هل انت متاكد   من المسح</h3>
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <h4>الاسم </h4>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.productNmae)
+        </dd>
+        @*<dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Address)
+        </dd>*@
+        <dt class="col-sm-2">
+            <h4>الفلوس </h4>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AllPrice)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteConvermid">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+
+    </form>
+</div>

@@ -161,20 +161,66 @@ namespace Elhoot_HomeDevices.Controllers
         }
 
         // GET: ProductController/Delete/5
-     
+
 
         // POST: ProductController/Delete/5
-        
-        public ActionResult Delete(int id )
+
+
+        public IActionResult Delete(int id)
+        {
+            var product = _context.Products.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult DeleteConfirmed(int id)
+        //{
+        //    var product = _context.Products.Find(id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    _context.Products.Remove(product);
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("Index");
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+
+
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
-              var prod=_context.Products.FirstOrDefault(pro=>pro.Id == id);
+                var prod = _context.Products.FirstOrDefault(pro => pro.Id == id);
                 _context.Products.Remove(prod);
                 var category = _context.Categories.Find(prod.CategoryId);
                 if (category != null)
                 {
-                  //  category.Count--;
+                    //  category.Count--;
                     _context.Entry(category).State = EntityState.Modified;
                     _context.SaveChanges();
                 }

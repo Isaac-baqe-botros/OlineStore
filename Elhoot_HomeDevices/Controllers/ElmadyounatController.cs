@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Elhoot_HomeDevices.Controllers
 {
@@ -52,8 +53,20 @@ namespace Elhoot_HomeDevices.Controllers
 
             return View(madunaate);
         }
- 
         public IActionResult Delete(int id)
+        {
+            var cust = _context.madunaates.Find(id);
+            if (cust == null)
+            {
+                // Customer with the specified ID was not found, handle the error accordingly
+                return NotFound();
+            }
+
+            return View(cust);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConvermid(int id)
         {
             var madunaate = _context.madunaates.FirstOrDefault(m => m.Id == id);
 
@@ -115,6 +128,7 @@ namespace Elhoot_HomeDevices.Controllers
                     originalMadunaate.date = editedMadunaate.date;
                     originalMadunaate.Pienfits = editedMadunaate.Pienfits;
                     originalMadunaate.CountMonth=editedMadunaate.CountMonth;
+                
                     _context.SaveChanges();
 
                      
@@ -125,30 +139,67 @@ namespace Elhoot_HomeDevices.Controllers
             return View(editedMadunaate);
         }
 
-        public IActionResult Details(int Id,string name)
+        public IActionResult Details(int Id, string name)
         {
             ViewBag.name = name;
-            var madun = _context.madunaates.Include(m => m.selectedDatesRange)
+            var madunaate = _context.madunaates.Include(m => m.selectedDatesRange)
                 .FirstOrDefault(m => m.Id == Id);
-            DateTime currendate = madun.date.AddMonths(1);
-            int? count = madun.CountMonth;
-            if (ModelState.IsValid)
+
+            if (ModelState.IsValid && madunaate != null)
             {
-                while (count != 0)
+                if (madunaate.selectedDatesRange.Count == 0)
                 {
-                    madun.selectedDatesRange.Add(new SelectedDate
+
+                    DateTime currendate = madunaate.date.AddMonths(1);
+                    int? count = madunaate.CountMonth;
+                    while (count != 0)
                     {
-                        Date = currendate,
-                        MadunatID = madun.Id,
-                        // Use order.Id as the OrderId
-                    });
-                    currendate = currendate.AddMonths(1);
-                    count--;// Use AddDays instead of AddMonths
+                        madunaate.selectedDatesRange.Add(new SelectedDate
+                        {
+                            Date = currendate,
+                            MadunatID = madunaate.Id
+                        });
+                        currendate = currendate.AddMonths(1);
+                        count--; // Use AddDays instead of AddMonths
+                    }
+                }
+            
+                else if (madunaate.selectedDatesRange.Count> madunaate.CountMonth)
+                {
+                    int gt = madunaate.selectedDatesRange.Count;
+                    int? jk = madunaate.CountMonth;
+                    int? count = gt - jk;
+                    
+
+                    for(int i=1;i<=count;i++)
+                    {
+                      
+                        madunaate.selectedDatesRange.RemoveAt(gt - i);
+                      
+                    }
+                }
+                else {
+                   int c= madunaate.selectedDatesRange.Count;
+                    int? count = madunaate.CountMonth-c;
+                    DateTime ff = madunaate.selectedDatesRange[c - 1].Date;
+                    DateTime currendate =ff.AddMonths(1);
+                    while (count != 0)
+                    {
+                        madunaate.selectedDatesRange.Add(new SelectedDate
+                        {
+                            Date = currendate,
+                            MadunatID = madunaate.Id
+                        });
+                        currendate = currendate.AddMonths(1);
+                        count--; // Use AddDays instead of AddMonths
+                    }
+
+
                 }
                 _context.SaveChanges();
+              
 
-
-                var viewmodel = madun.selectedDatesRange.Select(date => new MadunaatViewModel
+                var viewmodel = madunaate.selectedDatesRange.Select(date => new MadunaatViewModel
                 {
                     Date = date.Date,
                     DateFree = date.DateFree,
@@ -156,16 +207,19 @@ namespace Elhoot_HomeDevices.Controllers
                     MadunID = date.MadunatID,
                     Paypalce = date.Paypalce,
                     Statuse = date.Status
-
                 }).ToList();
+
                 var viewmodel1 = new MadunaateViewModel
                 {
                     madunaatViewModels = viewmodel
                 };
+
                 return View("Details", viewmodel1);
             }
+
             return View();
         }
+
 
         public IActionResult Madunatprocess(int MadunID, string date,bool IsCheecked=true)
 

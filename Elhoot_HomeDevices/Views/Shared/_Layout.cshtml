@@ -1,12 +1,18 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Elhoot_HomeDevices</title>
+    <title>@ViewData["Title"] - الحوت للاجهزه</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Elhoot_HomeDevices.styles.css" asp-append-version="true" />
+    <style>
+        body {
+             
+          
+        }
+    </style>
 </head>
 <body>
    
@@ -15,31 +21,46 @@
             <h1>Elhoot_HomeDevices</h1>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Elhoot_HomeDevices</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">الحوت للاجهزه</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" 
+                    aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                          @*  <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: red;" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: green;" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>*@
+                            <li class="nav-item me-3">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color:  seashell;" asp-area="" asp-controller="Category" asp-action="Index">المخزن </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">الاقسام </a>
+                            <li class="nav-item me-3">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: cornsilk;" asp-area="" asp-controller="Customer" asp-action="Index">العملا </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">العملا </a>
+                            <li class="nav-item me-3">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: beige;" asp-area="" asp-controller="Elmadyounat" asp-action="Index">المديونات </a>
                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Elmadyounat" asp-action="Index">المديونات </a>
+                            <li class="nav-item me-3">
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: floralwhite;" asp-area="" asp-controller="Eldyaanate" asp-action="Index"> الداين مينا مرتاح</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Dayenaaat" asp-action="Index"> الداين مينا مرتاح</a>
+                            <li class="nav-item me-3">
+                                <!-- Add the 'me-3' class for margin -->
+                                <a class="nav-link text-dark btn btn-primary btn-lg" style="background-color: ivory;"
+                                   asp-area="" asp-controller="Elsaaahp" asp-action="Index">
+                                    سحب الاجهزه
+                                </a>
                             </li>
+
+
+
+
+
+                            
+
 
                         </ul>
                         <partial name="_LoginPartial" />

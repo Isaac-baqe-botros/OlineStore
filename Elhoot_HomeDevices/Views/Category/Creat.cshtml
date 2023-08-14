@@ -4,16 +4,18 @@
     ViewData["Title"] = "Creat";
 }
 
-<h1>اضافه منتج جديد</h1>
-
-<h4>المخزن</h4>
-<hr />
+ <hr />
+ <div class="container">
+    <div class="text-center mt-4">
+        <h1> اضافه صنف جديد الى المخزن</h1>
+       
+    </div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Creat">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                    <h5 class="card-title">اسم الصنف</h5>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -28,7 +30,8 @@
                 <span asp-validation-for="Count" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <br />
+                <input type="submit" value="أضافه" class="btn btn-primary" />
             </div>
         </form>
     </div>
