@@ -14,11 +14,7 @@ namespace Elhoot_HomeDevices.Data
             : base(options)
         {
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-EV6RFJ5\\ISAAC;Initial Catalog=ElhootProject;Integrated Security=True;\r\n");
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-EV6RFJ5\\ISAAC;Initial Catalog=ElhootProject; Integrated Security=True;TrustServerCertificate=True");
-        }
+        
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -126,12 +122,12 @@ namespace Elhoot_HomeDevices.Data
         public int Peroid { get; set; }
         [NotMapped]
         public List<DateTime>? SelectedDates { get; set; }=new List<DateTime>();
-        public Customer? Customer { get; set; }  
+        public Customer? Customer { get; set; }
         [Required]
-        public DateTime Startdate { get; set; }
+        public DateTime Startdate { get; set; } = new DateTime(2023, 1, 1);
         public DateTime Enddate { get; set; }
-        public DateTime PayerTime { get; set; }
- 
+        public DateTime PayerTime { get; set; }= new DateTime(2023, 1, 1);
+
 
         public List<StoreDate>? DatesInRange { get; set; } = new List<StoreDate>();
 

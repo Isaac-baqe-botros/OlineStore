@@ -1,268 +1,215 @@
-﻿@model  Elhoot_HomeDevices.ViewModels.OrderDetailsViewModel
+﻿@model Elhoot_HomeDevices.ViewModels.OrderDetailsViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1> @TempData["customername"]</h1>
- 
- 
- 
-@*<p>
-    <a asp-action="Create" asp-route-customername="@TempData["customername"]" class="btn btn-primary">اضافه </a>
-</p>*@
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr class="table-primary"> 
-                <th>
-                      <h4>اسم المنتج</h4>
-                </th>
-                <th>
-                        <h4>السعر الكلى</h4>
-                </th>
-                <th>
-                       <h4>المبلغ المدفوع</h4>
-                </th>
-                <th>
-                       <h4>المبلغ المتبقى</h4>
-                </th>
-                <th>
-                    <h4>الفايده </h4>
-                </th>
-                <th>
-                      <h4>عدد الشهور</h4>
-                </th>
-                <th>
-                       <h4>المبلغ الكلى مع الفايده</h4>
-                </th>
-                <th>
-                       <h4>القسط الشهرى</h4>
-                </th>
-                <th>
-                       <h4>تاريخ الاستلام</h4>
-                </th>
-                <th>
-                       <h4>تاريخ اول قسط</h4>
-                </th>
-                <th>
-                       <h4>تاريخ اخر قسط</h4>
-                </th>
-                <th>
-                        <h4>اى تعليق</h4>
-                </th>
-                 
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            
-                 
-              
-          
-                <tr class="table-danger">
-                    <td>
-                    @Html.DisplayFor(modelItem => modelItem.Order.productNmae)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => modelItem.Order.AllPrice)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem =>modelItem.Order.PayedPrice)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem =>modelItem.Order.RestPrice)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem =>modelItem.Order.Penfits)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => modelItem.Order.Peroid)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => modelItem.Order.PriceAfterBenfits)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => modelItem.Order.PriceAfterpermonth)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem =>modelItem.Order.PayerTime)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => modelItem.Order.Startdate)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem =>modelItem.Order.Enddate)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => modelItem.Order.Comment)
-                    </td>
-                   
+<h1>@TempData["customername"]</h1>
+
+@*<div class="card mb-3">
+    <div class="card-header">
+        <h4>بيانات الطلب</h4>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>اسم المنتج</th>
+                    <th>السعر الكلى</th>
+                    <th>المبلغ المدفوع</th>
+                    <th>المبلغ المتبقى</th>
+                    <th>الفايده</th>
+                    <th>عدد الشهور</th>
+                    <th>المبلغ الكلى مع الفايده</th>
+                    <th>القسط الشهرى</th>
+                    <th>تاريخ الاستلام</th>
+                    <th>تاريخ اول قسط</th>
+                    <th>تاريخ اخر قسط</th>
+                    <th>اى تعليق</th>
+                    <th>الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.productNmae)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.AllPrice)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.PayedPrice)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.RestPrice)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.Penfits)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.Peroid)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.PriceAfterBenfits)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.PriceAfterpermonth)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.PayerTime)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.Startdate)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.Enddate)</td>
+                    <td>@Html.DisplayFor(modelItem => modelItem.Order.Comment)</td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-primary">تعديل</a>
-                        @*<a asp-action="Details" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-info">Details</a>*@
                         <br />
                         <a asp-action="Delete" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-danger">حذف</a>
                     </td>
-                    
-                 </tr>
-                
-            <input type="hidden" id="hiddenDateTime" value="@ViewBag.dateTime" />
-        </tbody>
-    </table>
-   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>*@
+<div class="card">
+    <div class="card-header">
+        <h4>بيانات الطلب</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>اسم المنتج</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.productNmae)</p>
+            </div>
+            <div class="col-md-4">
+                <h3>السعر الكلى</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.AllPrice)</p>
+            </div>
+            <div class="col-md-4">
+                <h3>المبلغ المدفوع</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.PayedPrice)</p>
+            </div>
+            <!-- Add more columns as needed -->
+         
+         
+            <div class="col-md-4">
+                <h3>المبلغ المتبقى</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.RestPrice)</p>
+            </div>
+            <div class="col-md-4">
+                <h3>الفايده</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.Penfits)</p>
+            </div>
+            <div class="col-md-4">
+                <h3>عدد الشهور</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.Peroid)</p>
+            </div>
+            <div class="col-md-4">
+                <h3>المبلغ الكلى مع الفايده</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.PriceAfterBenfits)</p>
+            </div>
+            <div class="col-md-4">
+                <h3>القسط الشهرى</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.PriceAfterpermonth)</p>
+            </div>
+            <div class="col-md-4">
+                <h3>تاريخ الاستلام</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.PayerTime)</p>
+            </div>
+            
+            <div class="col-md-4">
+                <h3>تاريخ اول قسط</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.Startdate)</p>
+            </div>
+            <div class="col-md-4">
+                <h3>تاريخ اخر قسط</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.Enddate)</p>
 
- 
-
+            </div>
+            <div class="col-md-4">
+                <h3>اى تعليق</h3>
+                <p style="font-weight: bold; color: red;">@Html.DisplayFor(modelItem => modelItem.Order.Comment)</p>
+            </div>
+        </div>
+        <!-- Repeat the pattern for other data -->
+        <div class="row">
+            <div class="col-md-4">
+                <h3>الإجراءات</h3>
+                <a asp-action="Edit" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-primary">تعديل</a>
+                <br />
+                <br />
+                <a asp-action="Delete" asp-route-id="@Model.Order.Id" class="btn btn-sm btn-danger">حذف</a>
+            </div>
+            <!-- Add more columns as needed -->
+        </div>
+    </div>
 </div>
-<div>
+
+
+<div class="table-responsive">
     <table class="table table-bordered">
-        <thead>
+        <thead class="thead-light">
             <tr>
                 <th>التاريخ</th>
-                <th>دفع </th>
+                <th>دفع</th>
                 <th>استرجاع</th>
                 <th>الحاله</th>
                 <th>تاريخ دفع القسط</th>
-                <th> مكان دفع القسط</th>
+                <th>مكان دفع القسط</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var date in Model.OrderViewModels)
             {
                 <tr>
-
                     <td>@date.Date.ToString()</td>
-
-                   <td><a asp-action="UpdatePriceAfterBenfits" asp-route-orderid="@date.OrderId" asp-route-date="@date.Date.ToString("yyyy-MM-dd")" asp-controller="PayElqest" class="btn btn-sm btn-primary @GetDisabledClass(date.IsSelected)">دفع القسط </a></td>
-                    <td><a asp-action="Estrgaaaa" asp-route-orderid="@date.OrderId" asp-controller="PayElqest" asp-route-orderid="@date.OrderId" asp-route-date="@date.Date.ToString("yyyy-MM-dd")" class="btn btn-sm btn-danger   @GetDisabledClass1(date.IsSelected) ">استرجاع القسط</a></td>
-                   <td>@date.Statuse</td>
-                    <td>
-                        <input class="form-control" type="date"
-                               data-val="true" data-val-required="The DateFree field is required"
-                              @* id="DateFree_@date.OrderId-@date.Date.ToString("yyyyMMdd")"*@
-                               name="DateFree" value="@date.DateFree?.ToString("yyyy-MM-dd")"
-                               fdprocessedid="cv2kwb" onchange="updateDate('@date.OrderId', '@date.Date.ToString("yyyy-MM-dd")', this.value)" />
-                    </td>
-                    <td>
-                        <input class="form-control" type="text"
-                               data-val="true" data-val-required="The DateFree field is required"
-                        
-                               name="Paypalce" value="@date.Paypalce"
-                               fdprocessedid="cv2kwb" onchange="updateDate2('@date.OrderId', '@date.Date.ToString("yyyy-MM-dd")', this.value)" />
-                    </td>
-                    
-                    <!-- Other table cells -->
-               
-
-    
+                    <td><a asp-action="UpdatePriceAfterBenfits" asp-route-orderid="@date.OrderId" asp-route-date="@date.Date.ToString("yyyy-MM-dd")" asp-controller="PayElqest" class="btn btn-sm btn-primary @GetDisabledClass(date.IsSelected)">دفع القسط</a></td>
+                    <td><a asp-action="Estrgaaaa" asp-route-orderid="@date.OrderId" asp-controller="PayElqest" asp-route-orderid="@date.OrderId" asp-route-date="@date.Date.ToString("yyyy-MM-dd")" class="btn btn-sm btn-danger @GetDisabledClass1(date.IsSelected)">استرجاع القسط</a></td>
+                    <td>@date.Statuse</td>
+                    <td><input class="form-control" type="date" data-val="true" data-val-required="The DateFree field is required" name="DateFree" value="@date.DateFree?.ToString("yyyy-MM-dd")" fdprocessedid="cv2kwb" onchange="updateDate('@date.OrderId', '@date.Date.ToString("yyyy-MM-dd")', this.value)" /></td>
+                    <td><input class="form-control" type="text" data-val="true" data-val-required="The DateFree field is required" name="Paypalce" value="@date.Paypalce" fdprocessedid="cv2kwb" onchange="updateDate2('@date.OrderId', '@date.Date.ToString("yyyy-MM-dd")', this.value)" /></td>
                 </tr>
-                @functions 
+                @functions
                 {
                 string GetDisabledClass1(bool date1)
                 {
                     if (date1 == false)
                     {
-                       return "disabled"; // Return the "disabled" class to disable the button
-                        
+                        return "disabled"; // Return the "disabled" class to disable the button
                     }
                     else
                     {
-                        return "enable"; // Return an empty string if the button should not be disabled                        }
+                        return "enable"; // Return an empty string if the button should not be disabled
                     }
                 }
                 string GetDisabledClass(bool date1)
-                 {
+                {
                     if (date1 == true)
                     {
-                                return "disabled"; // Return the "disabled" class to disable the button
+                        return "disabled"; // Return the "disabled" class to disable the button
                     }
-                        else
+                    else
                     {
-                            return "enable"; // Return an empty string if the button should not be disabled                        }
+                        return "enable"; // Return an empty string if the button should not be disabled
                     }
-                 }
-
-               }
+                }
             }
-      
-
+                
+            }
         </tbody>
-       
     </table>
-
-    <script>
-
-
-        function updateDate(orderId, date, newDate) {
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("UpdateDateFree", "Order")',
-                data: { orderId: orderId, date: date, newDate: newDate },
-                success: function (data) {
-                    // Update the UI if needed
-                    console.log('Date updated successfully');
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        }
-        function updateDate2(orderId, date, newDate) {
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("UpdateDateFree1", "Order")',
-                data: { orderId: orderId, date: date, newDate: newDate },
-                success: function (data) {
-                    // Update the UI if needed
-                    console.log('Date updated successfully');
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        }
-
-
-
-        
-    </script>
 </div>
- 
 
+<script>
+    function updateDate(orderId, date, newDate) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateDateFree", "Order")',
+            data: { orderId: orderId, date: date, newDate: newDate },
+            success: function (data) {
+                // Update the UI if needed
+                console.log('Date updated successfully');
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-
+    function updateDate2(orderId, date, newDate) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateDateFree1", "Order")',
+            data: { orderId: orderId, date: date, newDate: newDate },
+            success: function (data) {
+                // Update the UI if needed
+                console.log('Date updated successfully');
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+</script>

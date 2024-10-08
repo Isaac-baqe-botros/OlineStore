@@ -229,7 +229,7 @@ namespace Elhoot_HomeDevices.Controllers
             var selectedDateEntity = madun.selectedDatesRange.Find(m => m.Date.Date == selectedDate.Date);
             if (selectedDateEntity != null)
             {
-                selectedDateEntity.Status = "تم دفع الفايده ";
+                selectedDateEntity.Status = $"تم دفع الفايده  {madun.Pienfits}";
                 selectedDateEntity.IsSelected = IsCheecked;
                 madun.selectedDatesRange.Add(selectedDateEntity);
                 _context.SaveChanges();

@@ -11,45 +11,57 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
+         
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label">الاسم</label>
+                <label asp-for="Name" class="control-label">   <h5>الاسم</h5></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Money" class="control-label">المبلغ</label>
-                <input asp-for="Money" class="form-control" />
+                <label asp-for="Money" class="control-label"><h5>المبلغ</h5></label>
+                <input asp-for="Money" class="form-control" onblur="formatInputValue(this)" />
                 <span asp-validation-for="Money" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="date" class="control-label">التاريخ</label>
+                <label asp-for="date" class="control-label">   <h5>التاريخ</h5></label>
                 <input asp-for="date" class="form-control" />
                 <span asp-validation-for="date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pienfits" class="control-label">الفائدة</label>
+                <label asp-for="Pienfits" class="control-label">  <h5>الفائده</h5></label>
                 <input asp-for="Pienfits" class="form-control" />
                 <span asp-validation-for="Pienfits" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CountMonth" class="control-label">عدد الشهور</label>
+                <label asp-for="CountMonth" class="control-label">   <h5>عدد الشهور</h5></label>
                 <input asp-for="CountMonth" class="form-control" />
                 <span asp-validation-for="CountMonth" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="إنشاء" class="btn btn-primary" />
+              
             </div>
+            <br />
+            <br />
+            <a asp-action="Index" class="btn btn-secondary">العودة إلى القائمة</a>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">العودة إلى القائمة</a>
-</div>
+ 
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+ 
+<script>
+    function formatInputValue(input) {
+        var inputValue = input.value.replace(/,/g, ''); // Remove commas
+        var formattedValue = new Intl.NumberFormat('ar').format(inputValue); // Format with commas
+        input.value = formattedValue;
+    }
+</script>

@@ -220,7 +220,7 @@ namespace Elhoot_HomeDevices.Controllers
             var selectedDateEntity = Deen.selectedDatesRange.Find(m => m.Date.Date == selectedDate.Date);
             if (selectedDateEntity != null)
             {
-                selectedDateEntity.Status = "تم دفع الفايده ";
+                selectedDateEntity.Status = $"تم دفع الفايده  {Deen.Pienfits}";
                 selectedDateEntity.IsSelected = IsCheecked;
                 Deen.selectedDatesRange.Add(selectedDateEntity);
                 _context.SaveChanges();

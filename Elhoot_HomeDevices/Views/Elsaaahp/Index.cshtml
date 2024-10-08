@@ -1,113 +1,99 @@
-﻿@model IEnumerable< Elhoot_HomeDevices.ViewModels.ElsaahpViewModelIndex> 
-
+﻿@model IEnumerable<Elhoot_HomeDevices.ViewModels.ElsaahpViewModelIndex>
+<br />
+<br />
 @{
     ViewData["Title"] = "Index";
 }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Elhoot_HomeDevices</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        .card-body {
+            background-color:burlywood; /* Change the background color as desired */
+            
+        }
 
-<h1>@ViewBag.money =كل فلوس السحب</h1>
+        #showResultBtn {
+            margin-top: 10px;
+        }
 
-
-
-<p>
-    <a asp-action="Create"   class="btn btn-primary">انشاء سحب جديد</a>
-</p>
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr class="table-primary">
-                <th>
-                  <h4>اسم العميل</h4>
-                </th>
-                <th>
-                    <h4>اسم المنتج</h4>
-                </th>
-                <th>
-                    <h4> تاريخ السحب</h4>
-                </th>
-                <th>
-                    <h4> السعر الكلى</h4>
-                </th>
-                <th>
-                    <h4> عدد الشهور</h4>
-                </th>
-                 
-            </tr>
-        </thead>
-        <tbody>
-
-           
-                @foreach(var item in Model)
-                {
-                <tr class="table-danger">
-                <td>
-                    @Html.DisplayFor(modelItem => item.clientName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem =>item.Productname)
-                </td>
-                <td>
-                        @Html.DisplayFor(modelItem =>item.CreatedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem =>item.Allpeice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem =>item.CountMouth)
-                </td>
-                
-               
-                
-                <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">تعديل</a>
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info" asp-route-name="@item.clientName" asp-route-price="@item.Allpeice">دخول </a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">حدف</a>
-                </td>
-            </tr>
-            }
-            <input type="hidden" id="hiddenDateTime" value="@ViewBag.dateTime" />
-        </tbody>
-    </table>
-
-
-
-
+        #result {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <button id="showResultBtn" class="btn btn-primary">اضغط هنا لمعرفه الرقم الكلى</button>
+        <a asp-action="Create" class="btn btn-success">انشاء سحب جديد</a>
+    </div>
+    <div id="result" style="display: none;">
+        <h1>@ViewBag.money =كل فلوس السحب</h1>
+    </div>
 </div>
- 
 
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input id="searchInput" type="text" class="form-control" placeholder="ابحث عن العميل...">
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-header  bg-info">
+                        <h4>@item.clientName</h4>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>اسم المنتج: </strong>@item.Productname</p>
+                        <p><strong>تاريخ السحب: </strong>@item.CreatedDate</p>
+                        <p><strong>السعر الكلى: </strong>@item.Allpeice</p>
+                        <p><strong>عدد الشهور: </strong>@item.CountMouth</p>
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">تعديل</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"
+                               asp-route-name="@item.clientName" asp-route-price="@item.Allpeice">دخول</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">حدف</a>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
+<script>
+    document.getElementById("showResultBtn").addEventListener("click", function () {
+        var resultContainer = document.getElementById("result");
+        if (resultContainer.style.display === "none") {
+            resultContainer.style.display = "block";
+        } else {
+            resultContainer.style.display = "none";
+        }
+    });
 
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+        var input, filter, cards, card, name, i;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        cards = document.querySelectorAll(".card");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        for (i = 0; i < cards.length; i++) {
+            card = cards[i];
+            name = card.querySelector(".card-header h4");
+            if (name.textContent.toUpperCase().indexOf(filter) > -1) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        }
+    });
+</script>

@@ -43,14 +43,18 @@
             <div class="form-group">
                 <br />
                 <input type="submit" value="حفظ" class="btn btn-primary" />
+                
+                    <a asp-action="Index" class="btn btn-secondary" asp-route-categoryId="@Model.CategoryId"
+                       asp-route-CatName="@Model.Category.Name" >الرجوع</a>
             </div>
+               
+               
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" asp-route-categoryId="@Model.CategoryId" asp-route-CatName="@Model.Category.Name">Back to List</a>
-</div>
+ 
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

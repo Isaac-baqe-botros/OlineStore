@@ -6,63 +6,56 @@
 
 <h1>@ViewBag.name</h1>
 
-<div>
-    <h4>Madunaate</h4>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>التاريخ</th>
-                <th>دفع </th>
-                <th>استرجاع</th>
-                <th>الحاله</th>
-                <th>تاريخ دفع القسط</th>
-                <th> مكان دفع القسط</th>
-            </tr>
-        </thead>
+ 
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>التاريخ</th>
+                    <th>دفع</th>
+                    <th>استرجاع</th>
+                    <th>الحاله</th>
+                    <th>تاريخ دفع القسط</th>
+                    <th>مكان دفع القسط</th>
+                </tr>
+            </thead>
         <tbody>
             @if (Model.madunaatViewModels != null)
             {
                 @foreach (var date in Model.madunaatViewModels)
                 {
-                    <tr>
-
-                        <td>@date.Date.ToString()</td>
-
-                        <td>
-                            <a asp-action="Madunatprocess"
-                               asp-route-MadunID="@date.MadunID"
-                               asp-route-date="@date.Date.ToString("yyyy-MM-dd")"
-                               asp-controller="Elmadyounat" class="btn btn-sm btn-primary
-                  @GetDisabledClass(date.IsSelected)">   دفع الفايده الشهريه للداين  </a>
-                        </td>
-
-                        <td>
-                            <a asp-action="Madunatprocess1" asp-route-MadunID="@date.MadunID"
-                               asp-controller="Elmadyounat"
-                               asp-route-date="@date.Date.ToString("yyyy-MM-dd")"
-                               class="btn btn-sm btn-danger
-                     @GetDisabledClass1(date.IsSelected) "> استرجاع دفع الفايده الشهريه للداين</a>
-                        </td>
-
-                        <td>@date.Statuse</td>
-                        <td>
-                            <input class="form-control" type="date"
-                                   data-val="true" data-val-required="The DateFree field is required"
-                                   name="DateFree" value="@date.DateFree?.ToString("yyyy-MM-dd")"
-                                   fdprocessedid="cv2kwb" onchange="updateDate('@date.MadunID', '@date.Date.ToString("yyyy-MM-dd")', this.value)" />
-                        </td>
-                        <td>
-                            <input class="form-control" type="text"
-                                   data-val="true" data-val-required="The DateFree field is required"
-                                   name="Paypalce" value="@date.Paypalce"
-                                   fdprocessedid="cv2kwb" onchange="updateDate2('@date.MadunID', '@date.Date.ToString("yyyy-MM-dd")', this.value)" />
-                        </td>
-
-                        <!-- Other table cells -->
-
-
-
-                    </tr>
+                                <tr>
+                            <td>@date.Date.ToString()</td>
+                            <td>
+                                <a asp-action="Madunatprocess" asp-route-MadunID="@date.MadunID"
+                                   asp-route-date="@date.Date.ToString("yyyy-MM-dd")"
+                                   asp-controller="Elmadyounat"
+                                   class="btn btn-sm btn-primary @GetDisabledClass(date.IsSelected)">
+                                   دفع الفايده الشهريه للداين
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-action="Madunatprocess1" asp-route-MadunID="@date.MadunID"
+                                   asp-controller="Elmadyounat"
+                                   asp-route-date="@date.Date.ToString("yyyy-MM-dd")"
+                                   class="btn btn-sm btn-danger @GetDisabledClass1(date.IsSelected)">
+                                   استرجاع دفع الفايده الشهريه للداين
+                                </a>
+                            </td>
+                            <td>@date.Statuse</td>
+                            <td>
+                                <input class="form-control" type="date"
+                                       data-val="true" data-val-required="The DateFree field is required"
+                                       name="DateFree" value="@date.DateFree?.ToString("yyyy-MM-dd")"
+                                       fdprocessedid="cv2kwb" onchange="updateDate('@date.MadunID', '@date.Date.ToString("yyyy-MM-dd")', this.value)" />
+                            </td>
+                            <td>
+                                <input class="form-control" type="text"
+                                       data-val="true" data-val-required="The DateFree field is required"
+                                       name="Paypalce" value="@date.Paypalce"
+                                       fdprocessedid="cv2kwb" onchange="updateDate2('@date.MadunID', '@date.Date.ToString("yyyy-MM-dd")', this.value)" />
+                            </td>
+                        </tr>
                     @functions
                     {
                 string GetDisabledClass1(bool date1)
@@ -92,11 +85,9 @@
             }
                 }
             }
-           
-
-
+          
         </tbody>
-
+      
     </table>
     <script>
 
@@ -138,7 +129,11 @@
 
     </script>
 </div>
-<div>
-  
-    <a asp-action="Index">Back to List</a>
-</div>
+<br />
+<a asp-action="Index" class="btn btn-secondary">الرجوع</a>
+
+<br />
+<br />
+<br />
+<br />
+<br />

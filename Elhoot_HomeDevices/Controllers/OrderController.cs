@@ -111,7 +111,7 @@ namespace Elhoot_HomeDevices.Controllers
                 order.Enddate = order.Startdate.AddMonths(order.Peroid-1);
                 order.PriceAfterpermonth = order.PriceAfterBenfits / order.Peroid;
 
-                DateTime currendate = order.Startdate;
+                DateTime  currendate = order.Startdate;
                 while (currendate <= order.Enddate)
                 {
                     order.DatesInRange.Add(new StoreDate

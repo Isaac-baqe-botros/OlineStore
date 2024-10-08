@@ -1,38 +1,91 @@
 ﻿@model Elhoot_HomeDevices.ViewModels.MadunaateViewModel
+<br />
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Elhoot_HomeDevices</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        .card-body {
+            background-color: darkgray; /* Change the background color as desired */
+            
+        }
 
-<h2>الناس اللى  مديناااانى</h2>
-<h1>كل الدين اللى عليا: @Model.TotalMoney</h1>
-<p>
-    <a asp-action="Create" class="btn btn-primary">اضافه داين جديد</a>
-</p>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>العميل</th>
-                <th>المبلغ</th>
-                <th>التاريخ</th>
-                <th>الفايده</th>
-                <th>عدد الشهور</th>
-                <th>العمليات</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Madunaates)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Money)</td>
-                    <td>@Html.DisplayFor(modelItem => item.date)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Pienfits)</td>
-                    <td>@Html.DisplayFor(modelItem => item.CountMonth)</td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">تعديل</a>
-                        <a asp-action="Details" asp-route-id="@item.Id" asp-route-name="@item.Name" class="btn btn-secondary">دخول</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">حذف</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        #showResultBtn {
+            margin-top: 10px;
+        }
+
+        #result {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <button id="showResultBtn" class="btn btn-primary">اضغط هنا لمعرفه الرقم الكلى</button>
+        <a asp-action="Create" class="btn btn-success">اضافه داين جديد</a>
+    </div>
+    <div id="result" style="display: none;">
+        <h1>اللى عليا @Model.TotalMoney</h1>
+    </div>
 </div>
+
+<div class="container mt-3">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input id="searchInput" type="text" class="form-control" placeholder="ابحث عن عميل..." />
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in Model.Madunaates)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-header  bg-info">
+                        <h2 style="color:black"  class="card-title">@item.Name</h2>
+                    </div>
+                    <div class="card-body">
+
+                         <p class="card-text"><strong style="color:black; font-size:large">المبلغ:</strong> @Html.DisplayFor(modelItem => item.Money)</p>
+                        <p class="card-text"><strong style="color: black;">بداية التاريخ:</strong> @Html.DisplayFor(modelItem => item.date)</p>
+                        <p class="card-text"><strong style="color: black;">الفائدة:</strong> @Html.DisplayFor(modelItem => item.Pienfits)</p>
+                        <p class="card-text"><strong style="color: black;">عدد الشهور:</strong> @Html.DisplayFor(modelItem => item.CountMonth)</p>
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">تعديل</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-name="@item.Name" class="btn btn-secondary">دخول</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">حذف</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    document.getElementById("showResultBtn").addEventListener("click", function () {
+        var resultContainer = document.getElementById("result");
+        if (resultContainer.style.display === "none") {
+            resultContainer.style.display = "block";
+        } else {
+            resultContainer.style.display = "none";
+        }
+    });
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+        var searchValue = this.value.trim().toLowerCase();
+        var cards = document.querySelectorAll(".card");
+
+        cards.forEach(function (card) {
+            var cardName = card.querySelector(".card-title").textContent.toLowerCase();
+            if (cardName.includes(searchValue)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
+</script>

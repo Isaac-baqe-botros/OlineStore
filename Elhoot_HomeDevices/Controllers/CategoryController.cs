@@ -1,5 +1,6 @@
 ﻿using Elhoot_HomeDevices.Data;
 using Elhoot_HomeDevices.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -11,7 +12,7 @@ namespace Elhoot_HomeDevices.Controllers
         public CategoryController(ApplicationDbContext context) {
             _context = context;
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
 

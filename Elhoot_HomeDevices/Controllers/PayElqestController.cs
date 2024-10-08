@@ -37,7 +37,7 @@ namespace Elhoot_HomeDevices.Controllers
 
                 selectedDateEntity.IsSelected = isChecked;
 
-                selectedDateEntity.Statuse = "تم الدفع";
+                selectedDateEntity.Statuse =$"تم الدفع { order.PriceAfterpermonth} ";
 
 
                 order.DatesInRange.Add(selectedDateEntity);
